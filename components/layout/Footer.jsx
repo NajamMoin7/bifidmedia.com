@@ -33,7 +33,7 @@ export function Footer() {
           <h2>Company</h2>
           {navGroups[2].items.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
           {legal.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
-          <button className="privacy-link" data-open-privacy>Privacy Choices</button>
+          <button type="button" className="privacy-link" data-open-privacy>Privacy Choices</button>
         </div>
       </div>
       <div className="footer-newsletter" data-aos="fade-up">

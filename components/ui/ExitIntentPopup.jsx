@@ -13,7 +13,7 @@ export function ExitIntentPopup() {
   useEffect(() => {
     if (sessionStorage.getItem("bmedia_popup_dismissed")) return;
     const show = () => {
-      if (!document.querySelector(".cookie-panel, .modal-backdrop")) {
+      if (!document.querySelector(".cookie-banner, .cookie-modal-backdrop, .modal-backdrop")) {
         previousFocus.current = document.activeElement;
         setOpen(true);
       }
