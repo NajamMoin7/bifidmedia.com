@@ -1,0 +1,51 @@
+const amazonTitles = [
+  ["llc-formation", "Amazon LLC Formation", "Amazon LLC formation"],
+  ["seller-account-setup", "Amazon Seller Account Setup", "Amazon seller account setup"],
+  ["product-research", "Amazon Product Research", "Amazon product research service"],
+  ["product-sourcing", "Amazon Product Sourcing", "Amazon product sourcing"],
+  ["brand-approval", "Amazon Brand Approval", "Amazon brand approval"],
+  ["brand-registry-consulting", "Amazon Brand Registry Consulting", "Amazon brand registry consulting"],
+  ["trademark-support", "Amazon Trademark Support", "Amazon trademark support"],
+  ["listing-creation", "Amazon Listing Creation", "Amazon listing creation"],
+  ["listing-optimization", "Amazon Listing Optimization", "Amazon listing optimization service"],
+  ["seo", "Amazon SEO", "Amazon SEO services"],
+  ["ppc-management", "Amazon PPC Management", "Amazon PPC management agency"],
+  ["dsp-advertising", "Amazon DSP Advertising", "Amazon DSP advertising"],
+  ["product-launch", "Amazon Product Launch", "Amazon product launch"],
+  ["competitor-research", "Amazon Competitor Research", "Amazon competitor research"],
+  ["inventory-management", "Amazon Inventory Management", "Amazon inventory management"],
+  ["order-fulfillment", "Amazon Order Fulfillment Support", "Amazon order fulfillment support"],
+  ["account-management", "Amazon Account Management", "Amazon account management"],
+  ["account-reinstatement", "Amazon Account Reinstatement", "Amazon account reinstatement service"],
+  ["listing-reinstatement", "Amazon Listing Reinstatement", "Amazon listing reinstatement"],
+  ["reputation-management", "Amazon Reputation Management", "Amazon reputation management"],
+  ["enhanced-brand-content", "Amazon Enhanced Brand Content", "Amazon enhanced brand content"],
+  ["post-management", "Amazon Post Management", "Amazon post management"],
+  ["marketing", "Amazon Marketing", "Amazon marketing"],
+  ["consultation", "Amazon Consultation", "Amazon consultation"],
+  ["automation", "Amazon Automation", "Amazon automation agency"],
+];
+
+export const amazonServices = amazonTitles.map(([slug, title, keyword]) => ({
+  slug,
+  title,
+  keyword,
+  path: `/amazon/${slug}`,
+  h1: `${title} for Marketplace Sellers`,
+  description: `${title} helps sellers make better decisions, improve execution quality, and reduce avoidable marketplace friction. BifidMedia builds a practical plan around your account stage, catalog complexity, risk profile, and growth goals without promising guaranteed approvals, rankings, reinstatement, or sales.`,
+  includes: [
+    "Account-stage audit and priority map",
+    "Policy-aware recommendations",
+    "Documentation and workflow support",
+    "Reporting with clear next actions",
+  ],
+  benefits: [
+    "Better operating clarity",
+    "Cleaner Amazon documentation",
+    "More focused execution",
+    "Reduced manual coordination",
+  ],
+  process: ["Assess", "Plan", "Prepare", "Implement", "Review"],
+}));
+
+export const getAmazonService = (slug) => amazonServices.find((service) => service.slug === slug);

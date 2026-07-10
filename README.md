@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BifidMedia Website
 
-## Getting Started
+Premium Next.js agency website for BifidMedia, focused on e-commerce automation, marketplace management, branding, advertising, and digital business development.
 
-First, run the development server:
+## Install
+
+```bash
+npm install
+```
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Production Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+- `NEXT_PUBLIC_SITE_URL`
+- `CRM_WEBHOOK`
+- `EMAIL_PROVIDER`
+- `NEWSLETTER_WEBHOOK`
+- `NEXT_PUBLIC_GA4_ID`
+- `NEXT_PUBLIC_GTM_ID`
+- `NEXT_PUBLIC_GOOGLE_ADS_ID`
+- `NEXT_PUBLIC_META_PIXEL_ID`
+- `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`
+- `NEXT_PUBLIC_CLARITY_ID`
+- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+- `RECAPTCHA_SECRET_KEY`
 
-To learn more about Next.js, take a look at the following resources:
+## Editing Content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Business details: `data/siteConfig.js`
+- Primary services: `data/services.js`
+- Amazon services: `data/amazonServices.js`
+- FAQs: `data/faqs.js`
+- Testimonials and case studies: `data/testimonials.js`
+- Blog posts: `data/blog.js`
+- PPC landing pages: `data/landingPages.js`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Replace all `[CLIENT_*]` placeholders and every sample testimonial/case study before production launch.
 
-## Deploy on Vercel
+## Adding Services
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add a service object in `data/services.js` or `data/amazonServices.js`. The route is generated automatically from the `slug`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Editing Menus
+
+Primary menu groups live in `data/siteConfig.js`. Amazon menu items come from `data/amazonServices.js`.
+
+## Forms
+
+Forms post to:
+
+- `/api/leads`
+- `/api/newsletter`
+
+Lead submissions include consent, source path, UTM values, `gclid`, and `fbclid`. Connect `CRM_WEBHOOK` and `NEWSLETTER_WEBHOOK` to send data to external systems.
+
+## Analytics
+
+Analytics IDs are stored as environment variables. Marketing scripts should only be loaded after cookie consent where legally required.
+
+## Vercel Deployment
+
+Set environment variables in Vercel, run a production build, then deploy. The app uses App Router, static params for service routes, Metadata API, `sitemap.js`, and `robots.js`.
+
+## SEO Checklist
+
+- Confirm every placeholder is replaced.
+- Review metadata and canonical URLs.
+- Expand service copy with client-approved details.
+- Verify FAQ schema only reflects visible FAQs if schema is extended.
+- Confirm no unsupported claims are present.
+- Submit `/sitemap.xml` after launch.
+
+## Pre-launch Checklist
+
+- Test desktop and mobile navigation.
+- Test all forms and webhook integrations.
+- Test cookie preferences.
+- Verify PPC landing pages and conversion events.
+- Replace sample testimonials and case studies.
+- Review legal pages with a qualified professional.
+- Check Lighthouse performance, accessibility, best practices, and SEO.
