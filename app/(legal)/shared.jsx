@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/siteConfig";
+
 export const metadata = { title: "Legal Template", description: "Template legal page for BifidMedia. Must be reviewed before production." };
 
 export default function Page() {
@@ -12,6 +14,8 @@ export default function Page() {
       <p>BifidMedia does not guarantee rankings, sales, ad performance, approvals, account reinstatement, passive income, or return on investment.</p>
       <h2>Privacy and cookies</h2>
       <p>Forms may collect contact details, service interests, consent records, and campaign identifiers such as UTM parameters, gclid, and fbclid. Analytics and marketing scripts should only load after appropriate consent where required.</p>
+      <h2>Company contact</h2>
+      <p>{siteConfig.brandName}<br />{siteConfig.address}<br /><a href={siteConfig.emailHref}>{siteConfig.email}</a><br /><a href={siteConfig.phoneHref} aria-label={siteConfig.callAriaLabel}>{siteConfig.phoneDisplay}</a></p>
     </section>
   );
 }

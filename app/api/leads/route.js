@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/siteConfig";
+
 const hits = new Map();
 
 export async function POST(request) {
@@ -18,6 +20,7 @@ export async function POST(request) {
     receivedAt: new Date().toISOString(),
     crmWebhookConfigured: Boolean(process.env.CRM_WEBHOOK),
     emailProviderConfigured: Boolean(process.env.EMAIL_PROVIDER),
+    notificationRecipient: siteConfig.contactRecipientEmail,
   };
 
   if (process.env.CRM_WEBHOOK) {

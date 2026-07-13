@@ -47,7 +47,11 @@ export default function RootLayout({ children }) {
     name: siteConfig.brandName,
     url: siteConfig.url,
     email: siteConfig.email,
-    telephone: siteConfig.phone,
+    telephone: siteConfig.phoneSchema,
+    address: {
+      "@type": "PostalAddress",
+      ...siteConfig.schemaAddress,
+    },
     description: siteConfig.tagline,
   };
 
@@ -64,7 +68,7 @@ export default function RootLayout({ children }) {
         <ExitIntentPopup />
         <AosInitializer />
         <RouteProgress />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(org) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(org).replace(/</g, "\\u003c") }} />
       </body>
     </html>
   );

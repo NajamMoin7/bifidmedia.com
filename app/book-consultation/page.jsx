@@ -8,9 +8,9 @@ export default function Page() {
   return (
     <section className="simple-page form-page consult-page">
       <div className="contact-methods">
-        <InfoCard icon={<Mail />} label="Email" value={siteConfig.email} href={`mailto:${siteConfig.email}`} />
-        <InfoCard icon={<Phone />} label="Phone" value={siteConfig.phone} href={`tel:${siteConfig.phone}`} />
-        <InfoCard icon={<MapPin />} label="Address" value={siteConfig.address} />
+        <InfoCard icon={<Phone />} label="Call Us" value={siteConfig.phoneDisplay} href={siteConfig.phoneHref} ariaLabel={siteConfig.callAriaLabel} />
+        <InfoCard icon={<Mail />} label="Email Us" value={siteConfig.email} href={siteConfig.emailHref} />
+        <InfoCard icon={<MapPin />} label="Visit Us" value={siteConfig.addressLines} href={siteConfig.mapUrl} external />
       </div>
       <div className="form-intro">
         <p className="eyebrow">Free consultation</p>
@@ -29,15 +29,16 @@ export default function Page() {
   );
 }
 
-function InfoCard({ icon, label, value, href }) {
+function InfoCard({ icon, label, value, href, ariaLabel, external = false }) {
+  const lines = Array.isArray(value) ? value : [value];
   const content = (
     <>
       <span>{icon}</span>
       <div>
         <strong>{label}</strong>
-        <p>{value}</p>
+        <p>{lines.map((line) => <span key={line}>{line}</span>)}</p>
       </div>
     </>
   );
-  return href ? <a className="contact-card" href={href}>{content}</a> : <div className="contact-card">{content}</div>;
+  return href ? <a className="contact-card" href={href} aria-label={ariaLabel} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className="contact-card">{content}</div>;
 }

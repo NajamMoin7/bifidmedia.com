@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/siteConfig";
+
 export async function POST(request) {
   const body = await request.json().catch(() => null);
   if (!body?.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
@@ -7,7 +9,7 @@ export async function POST(request) {
     await fetch(process.env.NEWSLETTER_WEBHOOK, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: body.email, receivedAt: new Date().toISOString() }),
+      body: JSON.stringify({ email: body.email, receivedAt: new Date().toISOString(), notificationRecipient: siteConfig.contactRecipientEmail }),
     }).catch(() => null);
   }
   return Response.json({ ok: true });

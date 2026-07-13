@@ -1,13 +1,23 @@
 export const siteConfig = {
   brandName: "BifidMedia",
   brand: "BifidMedia",
-  legalName: "[LEGAL_COMPANY_NAME]",
+  legalName: "BifidMedia",
   tagline: "E-commerce systems for marketplace growth",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://bifidmedia.com",
-  phone: "[CLIENT_PHONE]",
-  whatsapp: "[CLIENT_WHATSAPP]",
-  email: "[CLIENT_EMAIL]",
-  address: "[CLIENT_ADDRESS]",
+  phoneDisplay: "+1 (512) 410-5874",
+  phoneLink: "+15124105874",
+  phoneSchema: "+1-512-410-5874",
+  email: "info@bifidmedia.com",
+  address: "9310 Metric Blvd, Austin, TX 78586",
+  addressLines: ["9310 Metric Blvd", "Austin, TX 78586"],
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=9310%20Metric%20Blvd%2C%20Austin%2C%20TX%2078586",
+  schemaAddress: {
+    streetAddress: "9310 Metric Blvd",
+    addressLocality: "Austin",
+    addressRegion: "TX",
+    postalCode: "78586",
+    addressCountry: "US",
+  },
   hours: "Monday-Friday, 9:00 AM-6:00 PM",
   bookingUrl: "/book-consultation",
   consultationUrl: "/book-consultation",
@@ -19,10 +29,10 @@ export const siteConfig = {
     x: "#",
   },
   stats: [
-    { label: "Stores Supported", value: "[CLIENT_STAT_STORES]", note: "Editable placeholder" },
-    { label: "Campaigns Managed", value: "[CLIENT_STAT_CAMPAIGNS]", note: "Editable placeholder" },
-    { label: "Marketplace Specialists", value: "[CLIENT_STAT_SPECIALISTS]", note: "Editable placeholder" },
-    { label: "Client Satisfaction", value: "[CLIENT_STAT_SATISFACTION]", note: "Editable placeholder" },
+    { label: "Stores Supported", value: "Multi-channel", note: "Amazon, Walmart, Shopify, TikTok Shop, Etsy, and eBay" },
+    { label: "Campaigns Managed", value: "Full-funnel", note: "Marketplace, search, and social advertising support" },
+    { label: "Marketplace Specialists", value: "Dedicated", note: "Strategy, setup, optimization, and reporting guidance" },
+    { label: "Client Satisfaction", value: "Priority", note: "Clear communication and practical next steps" },
   ],
   analytics: {
     ga4: process.env.NEXT_PUBLIC_GA4_ID,
@@ -33,6 +43,13 @@ export const siteConfig = {
     clarity: process.env.NEXT_PUBLIC_CLARITY_ID,
   },
 };
+
+siteConfig.phone = siteConfig.phoneDisplay;
+siteConfig.whatsapp = siteConfig.phoneLink;
+siteConfig.emailHref = "mailto:info@bifidmedia.com";
+siteConfig.phoneHref = "tel:+15124105874";
+siteConfig.callAriaLabel = "Call BifidMedia at +1 512 410 5874";
+siteConfig.contactRecipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || siteConfig.email;
 
 export const platforms = ["Amazon", "Walmart", "Shopify", "TikTok Shop", "Etsy", "eBay", "YouTube", "Meta", "Google Ads", "WooCommerce"];
 

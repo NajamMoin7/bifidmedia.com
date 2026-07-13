@@ -231,8 +231,8 @@ export function Header({ simple = false }) {
 
       <div className="header-actions">
         {!simple && <Link className="partner-link" href="/become-a-partner">Become a Partner</Link>}
-        <a className="phone-link" href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a>
-        <a className="phone-icon" href={`tel:${siteConfig.phone}`} aria-label="Call BifidMedia"><Phone size={18} /></a>
+        <a className="phone-link" href={siteConfig.phoneHref} aria-label={siteConfig.callAriaLabel}>{siteConfig.phoneDisplay}</a>
+        <a className="phone-icon" href={siteConfig.phoneHref} aria-label={siteConfig.callAriaLabel}><Phone size={18} /></a>
         <Button href="/book-consultation">Get Started <ArrowRight size={16} /></Button>
         {!simple && <button className="menu-toggle" onClick={() => setMobileOpen(true)} aria-label="Open menu"><Menu /></button>}
       </div>
@@ -376,7 +376,10 @@ function MobileMenu({ onClose }) {
         {businessServices.map(([title, href]) => <Link href={href} key={title} onClick={onClose}>{title}</Link>)}
       </MobileAccordion>
       <Link className="mobile-direct" href="/become-a-partner" onClick={onClose}>Become a Partner</Link>
-      <a className="mobile-direct" href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a>
+      <a className="mobile-direct mobile-call" href={siteConfig.phoneHref} aria-label={siteConfig.callAriaLabel}>
+        <span>Call Us</span>
+        <strong>{siteConfig.phoneDisplay}</strong>
+      </a>
       <Button href="/book-consultation">Get Started</Button>
     </motion.div>
   );

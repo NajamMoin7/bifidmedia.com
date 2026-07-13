@@ -41,14 +41,14 @@ export const caseStudies = [
   {
     title: "Marketplace Operations Reset",
     tag: "Placeholder case study",
-    result: "[CLIENT_RESULT_PLACEHOLDER]",
+    result: "Verified result pending client approval",
     summary: "Replace this sample with a real client story, verified numbers, and approved attribution before launch.",
     sample: true,
   },
   {
     title: "Shopify Conversion Foundation",
     tag: "Placeholder case study",
-    result: "[CLIENT_RESULT_PLACEHOLDER]",
+    result: "Verified result pending client approval",
     summary: "Replace with a documented Shopify engagement once approved by the client.",
     sample: true,
   },

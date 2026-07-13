@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig, navGroups } from "@/data/siteConfig";
 import { amazonServices } from "@/data/amazonServices";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
@@ -19,7 +20,11 @@ export function Footer() {
         <div data-aos="fade-up">
           <Image src="/logo/Logo.png" alt="BifidMedia logo" width={160} height={48} />
           <p>{siteConfig.tagline}. BifidMedia helps teams create cleaner e-commerce operations without unsupported guarantees.</p>
-          <p>{siteConfig.email}<br />{siteConfig.phone}<br />{siteConfig.address}</p>
+          <div className="footer-contact" aria-label="BifidMedia contact details">
+            <a href={siteConfig.phoneHref} aria-label={siteConfig.callAriaLabel}><Phone size={16} />{siteConfig.phoneDisplay}</a>
+            <a href={siteConfig.emailHref}><Mail size={16} />{siteConfig.email}</a>
+            <a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer"><MapPin size={16} />{siteConfig.address}</a>
+          </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="100">
           <h2>Services</h2>

@@ -17,7 +17,7 @@ export function LandingPage({ page }) {
           <h1>{page.h1}</h1>
           <p>{page.description} No fake urgency, no guaranteed outcomes, and no hidden keyword stuffing.</p>
           <div className="lp-actions">
-            <a href={`tel:${siteConfig.phone}`}><Phone size={17} /> Call {siteConfig.phone}</a>
+            <a href={siteConfig.phoneHref} aria-label={siteConfig.callAriaLabel}><Phone size={17} /> Call {siteConfig.phoneDisplay}</a>
             <a href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}`}>WhatsApp</a>
           </div>
           <div className="trust-row"><span><ShieldCheck size={16} /> Privacy-aware</span><span><Zap size={16} /> Fast campaign fit</span></div>

@@ -24,6 +24,7 @@ npm run start
 ## Environment Variables
 
 - `NEXT_PUBLIC_SITE_URL`
+- `CONTACT_RECIPIENT_EMAIL=info@bifidmedia.com`
 - `CRM_WEBHOOK`
 - `EMAIL_PROVIDER`
 - `NEWSLETTER_WEBHOOK`
@@ -46,7 +47,13 @@ npm run start
 - Blog posts: `data/blog.js`
 - PPC landing pages: `data/landingPages.js`
 
-Replace all `[CLIENT_*]` placeholders and every sample testimonial/case study before production launch.
+Official business contact details are centralized in `data/siteConfig.js`:
+
+- Phone: `+1 (512) 410-5874`
+- Email: `info@bifidmedia.com`
+- Address: `9310 Metric Blvd, Austin, TX 78586`
+
+Replace every sample testimonial/case study before production launch.
 
 ## Adding Services
 
@@ -64,6 +71,7 @@ Forms post to:
 - `/api/newsletter`
 
 Lead submissions include consent, source path, UTM values, `gclid`, and `fbclid`. Connect `CRM_WEBHOOK` and `NEWSLETTER_WEBHOOK` to send data to external systems.
+Set `CONTACT_RECIPIENT_EMAIL=info@bifidmedia.com` in production for email notifications.
 
 ## Analytics
 
