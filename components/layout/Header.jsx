@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/Button";
 const platformTabs = [
   {
     label: "Amazon Store",
+    brand: "amazon",
+    accent: "#FF9900",
     href: "/services/amazon-store",
     services: [
       ["Amazon LLC Formation", "/amazon/llc-formation", "Prepare the entity workflow and documentation sellers often need before launch."],
@@ -45,6 +47,8 @@ const platformTabs = [
   },
   {
     label: "Walmart Marketplace",
+    brand: "walmart",
+    accent: "#0071CE",
     href: "/services/walmart-marketplace",
     services: [
       ["Walmart account setup", "/services/walmart-marketplace", "Prepare marketplace onboarding and account readiness workflows."],
@@ -60,6 +64,8 @@ const platformTabs = [
   },
   {
     label: "Shopify Store",
+    brand: "shopify",
+    accent: "#95BF47",
     href: "/services/shopify-store",
     services: [
       ["Shopify store design", "/services/shopify-store", "Create a clean storefront experience for your brand and products."],
@@ -75,6 +81,8 @@ const platformTabs = [
   },
   {
     label: "TikTok Shop",
+    brand: "tiktok",
+    accent: "#25F4EE",
     href: "/services/tiktok-shop",
     services: [
       ["TikTok Shop setup", "/services/tiktok-shop", "Prepare shop foundations, catalog, and operational settings."],
@@ -89,6 +97,8 @@ const platformTabs = [
   },
   {
     label: "Etsy Shop",
+    brand: "etsy",
+    accent: "#F1641E",
     href: "/services/etsy-shop",
     services: [
       ["Etsy shop setup", "/services/etsy-shop", "Set up shop foundations, policies, and product organization."],
@@ -102,6 +112,8 @@ const platformTabs = [
   },
   {
     label: "eBay Store",
+    brand: "ebay",
+    accent: "#E53238",
     href: "/services/ebay-store",
     services: [
       ["eBay store setup", "/services/ebay-store", "Prepare seller foundations and store structure."],
@@ -282,6 +294,8 @@ function ServicesMega({ activePlatform, setActivePlatform, tabRefs, onTabKey, on
               aria-selected={activePlatform === index}
               aria-controls={`platform-panel-${index}`}
               className={activePlatform === index ? "active" : ""}
+              data-brand={tab.brand}
+              style={{ "--tab-accent": tab.accent }}
               onMouseEnter={() => setActivePlatform(index)}
               onClick={() => setActivePlatform(index)}
               onKeyDown={(event) => onTabKey(event, index)}
@@ -293,7 +307,7 @@ function ServicesMega({ activePlatform, setActivePlatform, tabRefs, onTabKey, on
         </div>
         <div id={`platform-panel-${activePlatform}`} role="tabpanel" className={`mega-service-grid ${selected.label === "Amazon Store" ? "four" : ""}`}>
           {selected.services.map(([title, href, description]) => (
-            <Link href={href} className="mega-service-item" key={`${selected.label}-${title}`}>
+            <Link href={href} className="mega-service-item" data-brand={selected.brand} style={{ "--tab-accent": selected.accent }} key={`${selected.label}-${title}`}>
               <strong>{title}</strong>
               <span>{description}</span>
               <ArrowRight size={15} />

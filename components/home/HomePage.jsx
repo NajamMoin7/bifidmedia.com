@@ -26,6 +26,18 @@ const platformIcons = {
   "Google Ads": SiGoogleads,
   WooCommerce: SiWoocommerce,
 };
+const platformBrandStyles = {
+  Amazon: { "--brand": "#FF9900", "--brand-soft": "rgba(255, 153, 0, .18)" },
+  Walmart: { "--brand": "#0071CE", "--brand-2": "#FFC220", "--brand-soft": "rgba(0, 113, 206, .2)" },
+  Shopify: { "--brand": "#95BF47", "--brand-soft": "rgba(149, 191, 71, .2)" },
+  "TikTok Shop": { "--brand": "#25F4EE", "--brand-2": "#FE2C55", "--brand-soft": "rgba(37, 244, 238, .18)" },
+  Etsy: { "--brand": "#F1641E", "--brand-soft": "rgba(241, 100, 30, .2)" },
+  eBay: { "--brand": "#E53238", "--brand-2": "#0064D2", "--brand-3": "#F5AF02", "--brand-4": "#86B817", "--brand-soft": "rgba(229, 50, 56, .18)" },
+  YouTube: { "--brand": "#FF0000", "--brand-soft": "rgba(255, 0, 0, .18)" },
+  Meta: { "--brand": "#0866FF", "--brand-soft": "rgba(8, 102, 255, .18)" },
+  "Google Ads": { "--brand": "#4285F4", "--brand-2": "#34A853", "--brand-3": "#FBBC04", "--brand-4": "#EA4335", "--brand-soft": "rgba(66, 133, 244, .18)" },
+  WooCommerce: { "--brand": "#96588A", "--brand-soft": "rgba(150, 88, 138, .2)" },
+};
 const processSteps = [
   ["01", SearchCheck, "Discovery and Business Audit", "We review your current business stage, marketplace readiness, channel risks, assets, and growth priorities."],
   ["02", ClipboardCheck, "Strategy and Action Plan", "BifidMedia translates the audit into a practical roadmap with responsibilities, timelines, and measurable next steps."],
@@ -46,7 +58,7 @@ export function HomePage() {
             <Button href="/book-consultation">Get a Free Consultation <ArrowRight size={17} /></Button>
             <Button href="/services/amazon-store" variant="secondary">Explore Services</Button>
           </div>
-          <div className="market-badges">{platforms.slice(0, 6).map((item) => <span key={item}>{item}</span>)}</div>
+          <div className="market-badges">{platforms.slice(0, 6).map((item) => <span key={item} style={platformBrandStyles[item]}>{item}</span>)}</div>
         </div>
         <div className="hero-art" aria-label="BifidMedia marketplace growth dashboard" data-aos="fade-left">
           <div className="orb orb-a" />
@@ -83,9 +95,10 @@ export function HomePage() {
           {platforms.map((platform) => {
             const PlatformIcon = platformIcons[platform];
             return (
-              <div className="platform-card" key={platform}>
+              <div className="platform-card" key={platform} style={platformBrandStyles[platform]}>
                 <div className="platform-icon">{PlatformIcon ? <PlatformIcon aria-hidden="true" /> : <Boxes aria-hidden="true" />}</div>
                 <h3>{platform}</h3>
+                <span>{platform.includes("Ads") || platform === "Meta" || platform === "YouTube" ? "Growth channel" : "Marketplace platform"}</span>
               </div>
             );
           })}
@@ -267,9 +280,9 @@ function SectionTitle({ eyebrow, title }) {
 function WalmartIcon(props) {
   return (
     <svg viewBox="0 0 48 48" fill="none" {...props}>
-      <circle cx="24" cy="24" r="4" fill="currentColor" />
+      <circle cx="24" cy="24" r="4" fill="#0071CE" />
       {[0, 60, 120, 180, 240, 300].map((rotate) => (
-        <rect key={rotate} x="22" y="5" width="4" height="12" rx="2" fill="currentColor" transform={`rotate(${rotate} 24 24)`} />
+        <rect key={rotate} x="22" y="5" width="4" height="12" rx="2" fill={rotate % 120 === 0 ? "#FFC220" : "#0071CE"} transform={`rotate(${rotate} 24 24)`} />
       ))}
     </svg>
   );
