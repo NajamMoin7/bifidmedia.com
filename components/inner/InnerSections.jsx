@@ -14,7 +14,7 @@ const imageMap = {
   tiktok: "/images/contact/business-consultation-workspace.webp",
   business: "/images/business/ecommerce-consultation-team.webp",
   amazon: "/images/amazon/amazon-analytics-dashboard.webp",
-  default: "/images/mockups/marketplace-dashboard.svg",
+  default: "/images/business/ecommerce-consultation-team.webp",
 };
 
 export function getServiceImage(service) {
@@ -154,7 +154,7 @@ export function ServiceShowcase({ service }) {
         <h2>Dashboards, assets, and workflows made easier to manage.</h2>
         <p>Use this section to replace sample visuals with approved screenshots, campaign dashboards, product pages, store mockups, or reporting views when client assets are available.</p>
       </div>
-      <Image src="/images/mockups/marketplace-dashboard.svg" alt={`${service.title} dashboard showcase for ${siteConfig.brandName}`} width={960} height={720} sizes="(max-width: 1024px) 100vw, 48vw" />
+      <Image src={getServiceImage(service)} alt={`${service.title} dashboard showcase for ${siteConfig.brandName}`} width={960} height={720} sizes="(max-width: 1024px) 100vw, 48vw" />
     </section>
   );
 }

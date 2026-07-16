@@ -111,7 +111,7 @@ export function HomePage() {
           <h2>E-commerce growth needs more than scattered tasks.</h2>
         </div>
         <div className="media-copy">
-          <Image src="/images/mockups/marketplace-dashboard.svg" alt="Marketplace management dashboard with sales, listings, and advertising metrics" width={960} height={720} sizes="(max-width: 768px) 100vw, 44vw" />
+          <Image className="operation-showcase-image" src="/images/amazon/amazon-analytics-dashboard.webp" alt="Marketplace analytics dashboard with sales, listings, and advertising metrics" width={960} height={720} sizes="(max-width: 768px) 100vw, 44vw" />
           <p>BifidMedia turns setup, branding, listings, paid media, marketplace operations, and reporting into a coordinated system. The goal is not hype; it is clearer execution, fewer blind spots, and better decisions as your online business matures.</p>
         </div>
       </section>
