@@ -691,27 +691,29 @@ small, .form-error { color: #ffb4ab; }
 }
 .route-spinner {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  inset: 0;
   z-index: 10001;
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  background: rgba(11, 20, 36, .94);
-  box-shadow: var(--shadow);
+  background: rgba(3, 7, 18, .34);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 .bifid-loader {
-  width: 28px;
-  height: 28px;
+  width: 58px;
+  height: 58px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
+  gap: 7px;
+  padding: 10px;
+  border: 1px solid rgba(102, 163, 255, .34);
+  border-radius: 1.1rem;
+  background: rgba(11, 20, 36, .94);
+  box-shadow: var(--shadow-lg);
 }
 .bifid-loader span {
-  border-radius: 6px;
+  border-radius: 7px;
   background: var(--primary-blue);
   animation: bifid-pulse .9s ease-in-out infinite;
 }
@@ -808,7 +810,13 @@ body.cookie-banner-visible main { padding-bottom: 132px; }
 .floating-contact { position: fixed; z-index: 40; right: 1rem; bottom: 1rem; display: grid; gap: .6rem; }
 .floating-contact a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; color: #ffffff; background: var(--gradient); box-shadow: 0 16px 40px rgba(49,69,244,.3); }
 body.cookie-banner-visible .floating-contact { bottom: 132px; }
-.modal-backdrop { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: rgba(16,21,43,.38); padding: 1rem; }
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 90; display: grid; place-items: center;
+  padding: 1rem;
+  background: rgba(3, 7, 18, .48);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 .modal {
   position: relative; width: min(1040px, calc(100vw - 2rem)); max-height: 90vh; overflow-y: auto;
   border: 1px solid var(--border); border-radius: 28px; background: var(--card); box-shadow: 0 30px 90px rgba(16,21,43,.22);
@@ -823,6 +831,12 @@ body.cookie-banner-visible .floating-contact { bottom: 132px; }
   display: grid; align-content: center; gap: 1rem;
 }
 .popup-visual img { width: 100%; height: auto; max-height: 270px; object-fit: contain; }
+.popup-visual .popup-real-image {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow);
+}
 .popup-visual p, .popup-form p { color: var(--body); line-height: 1.65; }
 .popup-benefits { display: grid; gap: .6rem; }
 .popup-benefits span { padding: .7rem .8rem; border-radius: 999px; background: var(--card); color: var(--primary-blue); font-weight: 900; border: 1px solid var(--border); }

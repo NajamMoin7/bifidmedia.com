@@ -63,7 +63,7 @@ export function ExitIntentPopup() {
       <div className="modal consultation-modal">
         <button ref={closeRef} className="modal-close" onClick={dismiss} aria-label="Close popup"><X /></button>
         <div className="popup-visual">
-          <Image src="/images/mockups/consultation-illustration.svg" alt="E-commerce consultation dashboard illustration" width={760} height={680} />
+          <Image className="popup-real-image" src="/images/contact/business-consultation-workspace.webp" alt="E-commerce consultation workspace with marketplace planning and reporting" width={760} height={680} />
           <h2 id="exit-title">Ready to Grow Your Online Business?</h2>
           <p>Tell us about your goals and our team will help you identify the right strategy for your marketplace, store, or digital business.</p>
           <div className="popup-benefits">
