@@ -1,26 +1,27 @@
-import { notFound } from "next/navigation";
 import { ServicePage } from "@/components/services/ServicePage";
-import { getService, services } from "@/data/services";
+import { serviceData, serviceMetadata, serviceParams } from "@/lib/servicePage";
+
+const CATEGORY = "business";
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+  return serviceParams(CATEGORY);
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const service = getService(slug);
-  if (!service) return {};
-  return {
-    title: service.title,
-    description: service.description,
-    alternates: { canonical: service.path },
-    openGraph: { title: `${service.title} | BifidMedia`, description: service.description, url: service.path },
-  };
+  return serviceMetadata(CATEGORY, slug);
 }
 
 export default async function Page({ params }) {
   const { slug } = await params;
-  const service = getService(slug);
-  if (!service) notFound();
-  return <ServicePage service={service} />;
+  const { service, context, related, breadcrumbs } = serviceData(CATEGORY, slug);
+
+  return (
+    <ServicePage
+      service={service}
+      marketplace={context}
+      related={related}
+      breadcrumbs={breadcrumbs}
+    />
+  );
 }

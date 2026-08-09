@@ -1,0 +1,273 @@
+import { buildServices, categoryIndex } from "./builder";
+
+const categories = [
+  {
+    id: "formation",
+    title: "Start & Structure",
+    description: "Get the entity, the brand and the compliance basics right.",
+    problemsHeading: "Why founders stall before they start",
+    problems: [
+      ["Structure chosen at random", "Entity type and state are recommended against how you will actually trade and bank."],
+      ["Compliance forgotten after filing", "Annual reports, registered agent and licences are tracked, not left to lapse."],
+      ["Banking and payments blocked", "Documentation is prepared so account opening and payment processing are approved."],
+      ["Brand unprotected", "Trademark screening and filing start early rather than after the name is everywhere."],
+    ],
+  },
+  {
+    id: "brand",
+    title: "Build Your Brand",
+    description: "Positioning, identity and audience — built to be recognised.",
+    problemsHeading: "Why most brand efforts go nowhere",
+    problems: [
+      ["No defined position", "Positioning is written down before any design work begins."],
+      ["Inconsistent output", "A documented system keeps every asset and channel coherent."],
+      ["Content without a plan", "A publishing schedule replaces sporadic bursts of activity."],
+      ["Audience never defined", "The specific person you are speaking to is documented, with the language they use."],
+    ],
+  },
+  {
+    id: "revenue",
+    title: "New Revenue Streams",
+    description: "Build a second income line with a real operating plan behind it.",
+    problemsHeading: "Why second income streams fail",
+    problems: [
+      ["Model chosen before the numbers", "Unit economics and capital requirements are modelled before commitment."],
+      ["No operating capacity", "Who does the work — and when — is planned, not assumed."],
+      ["Everything depends on the founder", "Documented systems mean the business runs without your constant input."],
+      ["No route to market", "Demand generation is planned alongside the product, not after launch."],
+    ],
+  },
+];
+
+const specs = [
+  {
+    slug: "business-formation",
+    category: "formation",
+    name: "Business Formation",
+    nav: "LLC formation, EIN, banking and compliance handled end to end",
+    h1: "Business Formation Services for E-Commerce Founders",
+    intro:
+      "Every marketplace, payment processor and supplier will ask for the same set of documents. BifidMedia forms your entity, obtains your EIN, arranges a registered agent and prepares the compliance pack so nothing blocks you later.",
+    value: "A formed, compliant entity with the documentation every platform will ask you for.",
+    badge: "Start here",
+    offerings: [
+      ["Entity selection", "LLC, S-corp and C-corp options are compared against your trading and tax position."],
+      ["State filing", "Formation documents are prepared and filed in the state we recommend for your situation."],
+      ["EIN and tax registration", "Federal tax ID obtained, including for non-US founders, plus state registrations where required."],
+      ["Registered agent", "A compliant registered agent is arranged so official correspondence reaches you."],
+      ["Operating agreement", "Ownership, contributions and decision rights are documented properly."],
+      ["Banking and compliance pack", "Documentation is assembled for bank accounts, payment processors and marketplace verification."],
+    ],
+    faqs: [
+      ["Which state should I incorporate in?", "Usually where you actually operate. Delaware and Wyoming suit specific circumstances rather than everyone."],
+      ["Can non-US residents form a US company?", "Yes, including obtaining an EIN without a Social Security Number."],
+      ["How long does formation take?", "Typically a few business days to two weeks depending on state processing times."],
+      ["Do I need a business bank account?", "Practically, yes. Mixing personal and business funds undermines the liability protection you formed the entity for."],
+      ["Does BifidMedia provide legal advice?", "No. We prepare and file documents and coordinate with your attorney or accountant where formal advice is needed."],
+    ],
+  },
+  {
+    slug: "personal-branding",
+    category: "brand",
+    name: "Personal Branding",
+    nav: "Build authority that generates inbound opportunity",
+    h1: "Personal Branding Services for Founders and Operators",
+    intro:
+      "A personal brand is a distribution asset: it makes hiring, selling and partnering easier. BifidMedia defines the position, builds the content system and runs the publishing cadence so authority accumulates rather than spikes.",
+    value: "A defined position and a publishing system that compounds into inbound opportunity.",
+    offerings: [
+      ["Positioning", "What you are known for, for whom, and why it is credible — written down first."],
+      ["Content pillars", "Three to five recurring themes give the programme structure and consistency."],
+      ["Profile optimisation", "LinkedIn, X, Instagram and YouTube profiles are rebuilt around the position."],
+      ["Content production", "Written, video and short-form content produced on a weekly cadence."],
+      ["Distribution", "Publishing, repurposing and engagement handled across the platforms that matter to you."],
+      ["Performance review", "Reach, engagement and inbound enquiries are reported monthly."],
+    ],
+    faqs: [
+      ["How much of my time does this need?", "Typically two to four hours a month for recording and approvals once the system is running."],
+      ["Which platform should I focus on?", "Whichever your customers and peers actually use. For most B2B founders that is LinkedIn plus one video platform."],
+      ["How long before it produces results?", "Reach builds within a couple of months; meaningful inbound usually takes six or more."],
+      ["Do you ghostwrite?", "We draft from your ideas and recordings. Everything is approved by you before it publishes."],
+      ["Can this support my company brand?", "Yes, and founder and company brands generally reinforce one another when the positioning is aligned."],
+    ],
+  },
+  {
+    slug: "social-media-marketing",
+    category: "brand",
+    name: "Social Media Marketing",
+    nav: "Organic and paid social that supports commercial goals",
+    h1: "Social Media Marketing Services",
+    intro:
+      "Social media works when it is tied to a commercial objective and run on a schedule. BifidMedia builds the strategy, produces the content and manages paid amplification across the platforms where your customers actually spend time.",
+    value: "A social programme with a schedule, a measurement plan and a commercial objective.",
+    offerings: [
+      ["Channel strategy", "Platforms are chosen on audience presence and format fit, not on habit."],
+      ["Content calendar", "A monthly calendar covers formats, themes and campaign moments."],
+      ["Creative production", "Static, video and short-form assets produced in testable batches."],
+      ["Community management", "Comments and messages are handled inside agreed response times."],
+      ["Paid amplification", "Budget is put behind organic posts that have already proven engagement."],
+      ["Reporting", "Reach, engagement, click-through and attributed revenue reported monthly."],
+    ],
+    faqs: [
+      ["How many platforms should we use?", "Two done properly beats five done badly. We recommend based on where your audience is."],
+      ["How often should we post?", "Enough to stay in the algorithm's consideration — usually several times a week per platform."],
+      ["Do you produce video?", "Yes, including short-form vertical formats which is where most organic reach now sits."],
+      ["How do you measure social ROI?", "Attributed revenue and assisted conversions where trackable, plus reach and engagement as leading indicators."],
+      ["Do you handle community management?", "Yes, within agreed response times and an approved tone-of-voice guide."],
+    ],
+  },
+  {
+    slug: "youtube-automation",
+    category: "revenue",
+    name: "YouTube Automation",
+    nav: "Build a managed, monetised channel as a second revenue line",
+    h1: "YouTube Automation Services",
+    intro:
+      "A faceless YouTube channel is a media business: it needs a niche, a production pipeline and a monetisation plan. BifidMedia handles research, scripting, production, publishing and optimisation, and reports honestly on what the channel earns.",
+    value: "A managed content channel with a real production pipeline and a monetisation plan.",
+    offerings: [
+      ["Niche and monetisation research", "Niches are assessed on demand, CPM potential and competitive depth."],
+      ["Channel setup", "Branding, structure, playlists and metadata are configured for discovery."],
+      ["Scripting and research", "Scripts are researched and written to a documented format and quality bar."],
+      ["Production", "Voiceover, editing, thumbnails and titles produced on a consistent schedule."],
+      ["Publishing and optimisation", "Upload cadence, metadata and thumbnail testing are managed continuously."],
+      ["Monetisation", "Partner Programme requirements, sponsorship and affiliate routes are pursued in sequence."],
+    ],
+    faqs: [
+      ["Is YouTube automation passive income?", "No. It is a media operation with real production costs. We will not describe it as passive."],
+      ["How long until monetisation?", "Reaching Partner Programme thresholds typically takes six to twelve months with consistent publishing."],
+      ["What does it cost to run?", "Production cost per video plus management. We quote it clearly before you commit."],
+      ["Who owns the channel?", "You do, entirely — channel, content and revenue."],
+      ["What if the niche does not work?", "We review performance quarterly and will recommend pivoting rather than continuing to fund something flat."],
+    ],
+  },
+  {
+    slug: "start-marketing-agency",
+    category: "revenue",
+    name: "Start a Marketing Agency",
+    nav: "Launch a service business with delivery capacity behind it",
+    h1: "Start a Marketing Agency With BifidMedia",
+    intro:
+      "The hard part of an agency is not selling the first client — it is delivering consistently afterwards. BifidMedia helps you define the offer, build the sales system and stand up delivery capacity so you can take on work you can actually fulfil.",
+    value: "A defined offer, a sales system and delivery capacity that can absorb the work you win.",
+    offerings: [
+      ["Offer definition", "Service, audience and pricing are defined against what you can deliver profitably."],
+      ["Brand and website", "Positioning, identity and a site built to convert enquiries into calls."],
+      ["Sales system", "Lead generation, qualification, proposal templates and follow-up cadence."],
+      ["Delivery capability", "White-label delivery support so early clients get proper work from day one."],
+      ["Operations setup", "Contracts, onboarding, reporting and project management processes documented."],
+      ["Growth roadmap", "A staged plan for hiring, pricing increases and service expansion."],
+    ],
+    faqs: [
+      ["Do I need agency experience?", "Not necessarily, but you need to sell and manage clients. We can support delivery while you build that."],
+      ["What services should I offer?", "Start narrow — one service, one audience. Breadth comes after repeatability."],
+      ["How does white-label delivery work?", "Our team delivers the work under your brand while you own the client relationship."],
+      ["How quickly can I launch?", "Brand, site and sales system typically take four to eight weeks."],
+      ["What are realistic first-year expectations?", "It depends entirely on your sales effort. We will model scenarios rather than quote a headline number."],
+    ],
+  },
+  {
+    slug: "ecommerce-brand-launch",
+    category: "revenue",
+    name: "Start Your E-Commerce Brand",
+    nav: "Take a brand from idea to launched, multi-channel business",
+    h1: "Start Your E-Commerce Brand",
+    intro:
+      "Launching a brand means making a hundred decisions in the right order. BifidMedia runs the sequence — validation, sourcing, identity, store, marketplace listings and launch — so nothing critical is discovered too late.",
+    value: "A validated, sourced, branded and launched business, in the correct order.",
+    offerings: [
+      ["Concept validation", "Demand, competition and margin are tested before any capital is committed."],
+      ["Sourcing and samples", "Suppliers are vetted, negotiated with and sampled to your specification."],
+      ["Brand identity", "Name, trademark, identity and packaging are created and protected."],
+      ["Store and listings", "A Shopify storefront plus marketplace listings are built together, not sequentially."],
+      ["Launch campaign", "Paid, organic, creator and email activity are planned as one launch."],
+      ["Post-launch management", "The business moves into ongoing multi-channel management."],
+    ],
+    faqs: [
+      ["How much capital do I need?", "It varies by category. We model inventory, branding, launch spend and working capital before you commit."],
+      ["How long from start to launch?", "Typically three to six months, with sourcing lead times the main variable."],
+      ["Should I start on a marketplace or my own store?", "Usually a marketplace for demand and a store for margin and data. We sequence both."],
+      ["What if validation says no?", "You save the capital. That is a successful outcome, and we will say so plainly."],
+      ["Do I own everything?", "Yes — brand, trademark, supplier relationships, store and customer data."],
+    ],
+  },
+  {
+    slug: "ultimate-business-model",
+    category: "revenue",
+    name: "Ultimate Business Model",
+    nav: "Choose the right model with the numbers modelled first",
+    h1: "Choosing Your Business Model",
+    intro:
+      "Most people choose a business model from what they saw online rather than from their own capital, time and risk tolerance. BifidMedia models the realistic options side by side so the decision is made on numbers.",
+    value: "A side-by-side model comparison built on your capital, time and risk tolerance.",
+    offerings: [
+      ["Situation assessment", "Capital, available time, experience and risk tolerance are established honestly."],
+      ["Model comparison", "Private label, wholesale, dropshipping, service business and content models compared."],
+      ["Financial modelling", "Startup cost, cash cycle, break-even and realistic timelines for each option."],
+      ["Risk assessment", "What can go wrong in each model, and what it would cost you."],
+      ["Recommendation", "A written recommendation with the reasoning and the case against it."],
+      ["Implementation plan", "A staged plan with checkpoints for the model you choose."],
+    ],
+    faqs: [
+      ["Which model is most profitable?", "There is no universal answer. Margin, capital intensity and time-to-revenue trade off against each other."],
+      ["Which needs the least capital?", "Service businesses and content models. They demand your time instead, which is not free."],
+      ["Can I run more than one?", "Eventually, but sequentially. Running two from a standing start usually means neither works."],
+      ["How long does the assessment take?", "Typically one to two weeks including the working sessions."],
+      ["Do I have to work with you afterwards?", "No. The analysis is yours regardless of what you decide."],
+    ],
+  },
+  {
+    slug: "kickstarter-campaign",
+    category: "revenue",
+    name: "Kickstarter Campaign",
+    nav: "Fund a product launch with a properly prepared campaign",
+    h1: "Kickstarter and Crowdfunding Campaign Services",
+    intro:
+      "Crowdfunding campaigns are won before they launch. BifidMedia builds the pre-launch audience, produces the campaign assets and runs the live campaign so funding does not depend on the platform sending you strangers.",
+    value: "A pre-launch audience and a prepared campaign, so day one is not a coin flip.",
+    offerings: [
+      ["Campaign strategy", "Funding goal, reward tiers and timeline are set against realistic conversion assumptions."],
+      ["Pre-launch audience", "An email list of interested backers is built and warmed before launch day."],
+      ["Campaign assets", "Video, page design, copy and imagery produced to platform best practice."],
+      ["Launch execution", "Launch-day sequencing, email, paid and community activity are coordinated."],
+      ["Live campaign management", "Updates, backer communication and stretch goals managed throughout."],
+      ["Fulfilment planning", "Post-campaign production, logistics and backer delivery are planned in advance."],
+    ],
+    faqs: [
+      ["How large should the pre-launch list be?", "Large enough that a realistic conversion rate funds a meaningful share on day one. We size it against your goal."],
+      ["How long should a campaign run?", "Thirty days is the common answer, because momentum concentrates at the start and end."],
+      ["What does a campaign cost to run?", "Video, page production and pre-launch advertising are the main costs. We budget them before you commit."],
+      ["Kickstarter or Indiegogo?", "It depends on category and audience. We recommend based on comparable campaigns."],
+      ["What happens after funding?", "Production and fulfilment, which is where most campaigns actually struggle. We plan it in advance."],
+    ],
+  },
+  {
+    slug: "mobile-application",
+    category: "revenue",
+    name: "Launch a Mobile Application",
+    nav: "Take an app from concept to store listing and first users",
+    h1: "Mobile Application Development and Launch",
+    intro:
+      "Most apps fail on distribution rather than engineering. BifidMedia scopes the product properly, builds a focused first version and plans store optimisation and acquisition alongside development.",
+    value: "A focused first version with a distribution plan built before the code is finished.",
+    offerings: [
+      ["Product definition", "Scope is cut to the smallest version that delivers the core value."],
+      ["UX and interface design", "User flows and interface design produced and tested before build."],
+      ["Development", "Cross-platform or native build depending on requirements, with QA throughout."],
+      ["Store submission", "App Store and Play Store listings prepared, submitted and shepherded through review."],
+      ["App store optimisation", "Listing keywords, screenshots and description built for discovery."],
+      ["Launch and iteration", "Acquisition campaigns, analytics and a post-launch roadmap."],
+    ],
+    faqs: [
+      ["Native or cross-platform?", "Cross-platform for most business apps; native where performance or deep platform integration matters."],
+      ["How long does an app take?", "A focused first version typically takes three to six months depending on scope."],
+      ["What does it cost?", "Scope drives cost entirely. We produce a scoped estimate rather than a headline figure."],
+      ["Do you handle store submission?", "Yes, including responding to review rejections."],
+      ["What about ongoing maintenance?", "Apps need continuous OS-compatibility maintenance. We offer that on a retainer."],
+    ],
+  },
+];
+
+export const businessCategories = categories;
+export const businessServices = buildServices("business", "/business", categories, specs);
+export const businessServiceIndex = categoryIndex(categories, businessServices);

@@ -1,44 +1,54 @@
-import { LeadForm } from "@/components/forms/LeadForm";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { siteConfig } from "@/data/siteConfig";
+import { FormPage } from "@/components/forms/FormPage";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Book a Free Consultation", description: "Book a free BifidMedia consultation for marketplace management, e-commerce automation, branding, and advertising." };
+export const metadata = pageMetadata({
+  title: "Book a Free E-Commerce Consultation",
+  description:
+    "Book a free 30-minute consultation with a BifidMedia specialist. Get a straight assessment of your marketplace or storefront and what to do next.",
+  path: "/book-consultation",
+});
 
-export default function Page() {
+const faqs = [
+  {
+    question: "How long is the consultation?",
+    answer:
+      "Thirty minutes is usually enough to establish where you are and what the first three priorities would be. We will book longer if the situation needs it.",
+  },
+  {
+    question: "Who will I speak to?",
+    answer:
+      "A specialist for the channel you sell on — not a salesperson relaying questions back to a delivery team.",
+  },
+  {
+    question: "What should I have ready?",
+    answer:
+      "Whatever you have: the channels you sell on, roughly what you turn over, what you have already tried and what you want to be true in twelve months.",
+  },
+  {
+    question: "Will you try to sell me something on the call?",
+    answer:
+      "We will tell you what we would do and what it would cost if you ask. If the honest answer is that you do not need an agency yet, that is what you will hear.",
+  },
+];
+
+export default function BookConsultationPage() {
   return (
-    <section className="simple-page form-page consult-page">
-      <div className="contact-methods">
-        <InfoCard icon={<Phone />} label="Call Us" value={siteConfig.phoneDisplay} href={siteConfig.phoneHref} ariaLabel={siteConfig.callAriaLabel} />
-        <InfoCard icon={<Mail />} label="Email Us" value={siteConfig.email} href={siteConfig.emailHref} />
-        <InfoCard icon={<MapPin />} label="Visit Us" value={siteConfig.addressLines} href={siteConfig.mapUrl} external />
-      </div>
-      <div className="form-intro">
-        <p className="eyebrow">Free consultation</p>
-        <h1>Get a practical e-commerce growth plan.</h1>
-        <p>Share your platform, goals, budget range, and timeline. BifidMedia will recommend a clear next step for your marketplace, store, or digital business.</p>
-        <div className="map-panel">
-          <MapPin size={24} />
-          <div>
-            <strong>Consultation coverage</strong>
-            <span>Remote strategy calls for marketplace sellers, Shopify brands, and digital business teams.</span>
-          </div>
-        </div>
-      </div>
-      <LeadForm type="consultation" />
-    </section>
+    <FormPage
+      eyebrow="Free consultation"
+      heading="Book a Free Call With a Specialist"
+      intro="Thirty minutes with someone who works on your channel every day. You will leave with a clear view of what is holding the store back and what the first three priorities are."
+      points={[
+        "Speak to a specialist, not a salesperson",
+        "A straight assessment of what is and is not working",
+        "You keep the recommendations either way",
+        "No obligation to proceed",
+      ]}
+      breadcrumb="Book a Consultation"
+      formHeading="Request your consultation"
+      formText="Send your details and we will come back with times that work — usually the same day."
+      submitLabel="Request a call"
+      intent="consultation"
+      faqs={faqs}
+    />
   );
-}
-
-function InfoCard({ icon, label, value, href, ariaLabel, external = false }) {
-  const lines = Array.isArray(value) ? value : [value];
-  const content = (
-    <>
-      <span>{icon}</span>
-      <div>
-        <strong>{label}</strong>
-        <p>{lines.map((line) => <span key={line}>{line}</span>)}</p>
-      </div>
-    </>
-  );
-  return href ? <a className="contact-card" href={href} aria-label={ariaLabel} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className="contact-card">{content}</div>;
 }
