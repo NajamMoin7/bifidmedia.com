@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import { footerNav, legalNav } from "@/data/navigation";
-import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { CookiePreferencesLink } from "@/components/privacy/CookiePreferencesLink";
 import { ClientPrivacyNotice } from "@/components/privacy/ClientPrivacyNotice";
 
@@ -105,7 +104,7 @@ export function Footer() {
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
 
-            <ul className="mt-7 flex flex-wrap items-center gap-3">
+            <ul className="mt-8 flex flex-wrap items-center gap-3">
               {siteConfig.socials.map((social) => (
                 <li key={social.label}>
                   <a
@@ -128,17 +127,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-9">
-              <h2 className="text-[0.85rem] font-semibold text-accent">
-                Newsletter
-              </h2>
-              <p className="mt-3 max-w-sm text-[0.88rem] leading-relaxed text-white/70">
-                One practical e-commerce email a month. Policy changes,
-                benchmarks and playbooks — nothing else.
-              </p>
-              <NewsletterForm tone="dark" className="mt-4 max-w-sm" />
-            </div>
           </div>
 
           {/* Services — two columns, mirroring the reference layout */}
